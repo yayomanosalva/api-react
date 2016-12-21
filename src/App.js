@@ -1,18 +1,28 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import { Router, Route, browserHistory, IndexRoute  } from 'react-router'
+import Header from './routers/Header.jsx'
+import Home from './routers/Home.jsx'
+import Api from './routers/Api.jsx'
+import Contact from './routers/Contact.jsx'
+import Footer from './routers/footer/Footer.jsx'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div className="App">               
+        <div className="">          
+          {/*Menu de las rutas*/}
+          <Router history={browserHistory}>
+            <Route path="/" component={Header}>
+              <IndexRoute component={Home} />
+              <Route path="home" component={Home} />
+              <Route path="Api" component={Api} />
+              <Route path="contact" component={Contact} />
+            </Route>
+          </Router>               
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Footer/>
       </div>
     );
   }
